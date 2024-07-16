@@ -17,6 +17,14 @@ steps:
     javaHomeOption: 'JDKVersion'
     jdkVersionOption: '1.8'
     jdkArchitectureOption: 'x64'
+- task: SnykSecurityScan@1
+  inputs:
+    serviceConnectionEndpoint: 'snyk_connection'
+    testType: 'code'
+    codeSeverityThreshold: 'high'
+    failOnIssues: true
+    projectName: 'pipelines-java'
+    organization: 'soumyapoolakkil'
     publishJUnitResults: true
     testResultsFiles: '**/surefire-reports/TEST-*.xml'
     goals: 'package'
